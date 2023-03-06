@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Embedding JavaScript</title>
+</head>
+<body>
+    <script>
+    function getComputerChoice(){
+        const gameValues = ["Rock", "Paper", "Scissors"];
+        const random = Math.floor(Math.random() * gameValues.length);
+        console.log(gameValues[random]);        
+    }
+    
+    function playRound(playerSelection, computerSelection){
+        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+        if (playerSelection == computerSelection) {
+            return "A Draw";
+        } else if (playerSelection == "Rock" && computerSelection == "Scissors" || 
+        playerSelection == "Scissors" && computerSelection == "Paper" || 
+        playerSelection == "Paper" && computerSelection == "Rock" ) {
+            return "You Win! ${playerSelection} beats ${computerSelection}";
+        } else {
+            return "You Lose! ${computerSelection} beats ${playerSelection}";
+        }
+    }
+
+    function game() {
+        let counterForPlayer = 0, counterForComputer = 0;
+        for (let i = 0; i < 5; i++) {
+            let result = playRound(prompt("Rock, Paper, or Scissors?", ''), getComputerChoice());
+            if (result.charAt(4) == "W"){
+                ++counterForPlayer;
+            } else if (result.charAt(4) == "L") {
+                ++counterForComputer;
+            }
+         }
+         if (counterForPlayer > counterForComputer){
+            console.log("You Won! Congrats!!");
+         } else if (counterForPlayer < counterForComputer) {
+            console.log("You Lost -_- But that's ok, try again next round!");
+         } else {
+            console.log("Аriendship has won!");
+         }
+             }
+
+             game();
+    </script>
+</body>
+</html>
